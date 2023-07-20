@@ -60,3 +60,19 @@ class BaseModel:
             "[ClassName] (id) attribute_dict".
         """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+
+    def to_dict(self):
+        """
+        Converts the instance to a dictionary representation.
+
+        Returns:
+            dict: Dictionary representation of the instance.
+        """
+        dict_repr = {}
+        dict_repr['__class__'] = self.__class__.__name__
+        for key, value in self.__dict__.items():
+            if key in ('created_at', 'updated_at'):
+                dict_repr[key] = value.isoformat()
+            else:
+                dict_repr[key] = value
+        return dict_repr
