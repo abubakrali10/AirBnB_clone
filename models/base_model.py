@@ -50,3 +50,13 @@ class BaseModel:
         Updates the updated_at attribute with the current datetime.
         """
         self.updated_at = datetime.now()
+
+    def __str__(self):
+        """
+        Returns a string representation of the instance.
+
+        Returns:
+            str: String representation of the instance in the format
+            "[ClassName] (id) attribute_dict".
+        """
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
